@@ -1,3 +1,4 @@
+/*https://github.com/capnfabs/showhide.js*/
 (function($) {
 
 	//include radio buttons of the same name in the set of triggering elements.
