@@ -1,13 +1,6 @@
 (function($) {
 
-	//takes a string of id1|id2|id3 and returns corresponding IDs (prepends a #)
-	var parseTargets = function(string) {
-		return $.map(string.split('|'),function (x) {
-			return '#'+$.trim(x);
-		});
-	}
-
-	//include radio buttons of the same name in the set of triggernig elements.
+	//include radio buttons of the same name in the set of triggering elements.
 	var getShowBindingElements = function(show_targets) {
 		var binding_elements = $(show_targets);
 		$(show_targets).each(function () {
@@ -60,8 +53,6 @@
 				isDiv(show_target) ? hideDiv(show_target) : hideSpan(show_target);
 			}
 		}).change(); //fire the first time.
-
-			
 	};
 
 	//register a binding for change of focus.
@@ -77,9 +68,8 @@
 	$.fn.showHide = function() {
 		//prep all elements that should show/hide
 		$(this).find('[data-show]').each(function(idx) {
-			var targets = parseTargets($(this).attr('data-show'));
-			var show_controllers = $(targets.join(','));
-			console.log(show_controllers);
+			var target = $(this).attr('data-show');
+			var show_controllers = $(target);
 			if (!(show_controllers.length)) { //empty
 				return true; //continue loop
 			}
@@ -89,14 +79,17 @@
 		});
 		//prep all elements that should auto-focus
 		$(this).find('[data-focus]').each(function(idx) {
-			var show_controller = $('#'+$(this).attr('data-focus'));
+			var focus_controller = $($(this).attr('data-focus'));
 			
-			if (!(show_controller.length)) { //empty
+			if (!(focus_controller.length)) { //empty
 				return true; //continue loop
 			}
 
-			registerFocusBinding(show_controller,$(this));
+			registerFocusBinding(focus_controller,$(this));
 
 		});
 	};
 })(jQuery);
+
+//auto-register to run once the DOM is ready.
+jQuery(function($) {$(document).showHide();});
