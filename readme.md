@@ -33,7 +33,7 @@ The div will only be visible when the checkbox is `checked`. You can bind `data-
 Other common binding expressions:
 
 - `data-show=".magic"`
-- `data-show="#elem1,#elem2,.setOfElements"
+- `data-show="#elem1,#elem2,.setOfElements"`
 
 ##Focus
 You can also cause elements to automatically obtain focus once checkboxes and radiobuttons are checked. Simply apply `data-focus="#elemid"` (or `".class"`) to the appropriate element.
